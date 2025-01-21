@@ -1,12 +1,13 @@
 import { ethers } from "ethers";
 import contractConfig from "../config/contract.json";
 
+const contractAddress = import.meta.env.VITE_SMART_CONTRACT_ADDRESS;
 export const getContract = async () => {
   try {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
     const contract = new ethers.Contract(
-      contractConfig.address,
+      contractAddress,
       contractConfig.abi,
       signer
     );
@@ -43,7 +44,7 @@ export const fetchFiles = async (walletAddress) => {
     // Initialize provider and contract
     const provider = new ethers.BrowserProvider(window.ethereum);
     const contract = new ethers.Contract(
-      contractConfig.address,
+      contractAddress,
       contractConfig.abi,
       provider
     );
